@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model appleal {
+  area_code      String         @db.VarChar(7)
+  court_id       String         @db.VarChar(7)
+  date_appleal   DateTime       @default(now()) @db.Date
+  police_station police_station @relation(fields: [area_code], references: [id], onUpdate: Restrict)
+  court          court          @relation(fields: [court_id], references: [id], onUpdate: Restrict)
+
+  @@id([area_code, court_id])
+}
+
+model court {
+  id            String          @id @db.VarChar(7)
+  name          String          @db.VarChar(40)
+  area          String          @db.VarChar(40)
+  appleal       appleal[]
+  crime_archive crime_archive[]
+}
+
+model crime {
+  id             String           @id @db.VarChar(7)
+  location       String           @db.VarChar(40)
+  type_of_crime  String           @db.VarChar(40)
+  date_of_crime  DateTime         @default(now()) @db.Date
+  fir_id         String           @db.VarChar(7)
+  fir            fir              @relation(fields: [fir_id], references: [id], onUpdate: Restrict)
+  crime_archive  crime_archive[]
+  crime_commited crime_commited[]
+}
+
+model crime_archive {
+  verdict      String   @db.Text
+  verdict_date DateTime @default(now()) @db.Date
+  crn_id       String   @db.VarChar(7)
+  court_id     String   @db.VarChar(7)
+  court        court    @relation(fields: [court_id], references: [id], onUpdate: Restrict)
+  crime        crime    @relation(fields: [crn_id], references: [id], onUpdate: Restrict)
+
+  @@unique([crn_id, court_id], map: "crime_archive")
+  @@index([crn_id, court_id], map: "court_id")
+}
+
+model crime_commited {
+  crn_id      String   @db.VarChar(7)
+  criminal_id String   @db.VarChar(7)
+  criminal    criminal @relation(fields: [criminal_id], references: [id], onUpdate: Restrict)
+  crime       crime    @relation(fields: [crn_id], references: [id], onUpdate: Restrict)
+
+  @@id([crn_id, criminal_id])
+}
+
+model criminal {
+  id             String           @id @db.VarChar(7)
+  name           String           @db.VarChar(40)
+  address        String           @db.VarChar(40)
+  phone_number   String           @db.VarChar(13)
+  crime_commited crime_commited[]
+}
+
+model fir {
+  id              String         @id @db.VarChar(7)
+  date_of_filling DateTime       @default(now()) @db.Date
+  witness_name    String         @db.VarChar(40)
+  witness_pho     String         @db.VarChar(13)
+  summary         String         @db.Text
+  area_code       String         @db.VarChar(7)
+  police_station  police_station @relation(fields: [area_code], references: [id], onUpdate: Restrict)
+  crime           crime[]
+}
+
+model police_station {
+  id      String    @id @db.VarChar(7)
+  name    String    @db.VarChar(40)
+  address String    @db.VarChar(40)
+  appleal appleal[]
+  fir     fir[]
+}

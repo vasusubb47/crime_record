@@ -6,13 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma": "prisma studio --port 1111 --browser none",
+    "dbMig": "prisma format && prisma migrate && prisma db push"
   },
   "dependencies": {
+    "@prisma/client": "3.14.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "bootstrap": "^5.2.3",
     "next": "13.0.5",
+    "prisma": "4.6.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.3"
