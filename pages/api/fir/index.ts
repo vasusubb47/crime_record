@@ -10,6 +10,9 @@ export default async function crime(
 ){
   res.status(200);
   res.json(
-    await prisma.fir.findMany()
+    await prisma.$queryRaw`
+      SELECT *
+      FROM fir
+    `
   );
 }

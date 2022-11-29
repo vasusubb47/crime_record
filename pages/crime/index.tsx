@@ -17,7 +17,7 @@ const crimePage: NextPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" container">
       <h1 className="handwriten">Crime</h1>
       <table className="table table-bordered table-striped">
         <thead>
@@ -41,8 +41,6 @@ const crimePage: NextPage = () => {
           })
         }</tbody>
       </table>
-      <hr />
-      <Link href="/crime/add" className="btn btn-primary"> Add </Link>
     </div>
   );
 };

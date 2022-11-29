@@ -8,6 +8,10 @@ export default async function addCrime(
   req: NextApiRequest,
   res: NextApiResponse
 ){
+  res.status(405).send({
+    message: 'This rout is closed'
+  });
+  return;
   if (req.method !== 'POST') {
     res.status(405).send({ message: 'Only POST requests allowed' })
     return;

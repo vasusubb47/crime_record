@@ -22,7 +22,7 @@ const fir: NextPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" container">
       <h1 className="handwriten">Fir</h1>
       <table className="table table-bordered table-striped">
         <thead>
@@ -42,7 +42,7 @@ const fir: NextPage = () => {
               <td>{ele.date_of_filling}</td>
               <td>{ele.witness_name}</td>
               <td>{ele.witness_pho}</td>
-              <td>{ele.summary}</td>
+              <td>{ele.summary.substring(0, 150) + "..."}</td>
               <td>{ele.area_code}</td>
             </tr>
           })

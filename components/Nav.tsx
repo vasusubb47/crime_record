@@ -38,6 +38,9 @@ const Nav = () => {
             <Link href="/police" className="nav-link">police-station</Link>
           </li>
           <li className="nav-item">
+            <Link href="/reportCrime" className="nav-link">report-crime</Link>
+          </li>
+          <li className="nav-item">
             <a href="#footer" className="nav-link">contact</a>
           </li>
         </ul>

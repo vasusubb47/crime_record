@@ -21,7 +21,7 @@ const criminal: NextPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" container">
       <h1 className="handwriten">Criminal</h1>
       <table className="table table-bordered table-striped">
         <thead>

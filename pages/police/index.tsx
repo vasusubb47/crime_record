@@ -1,7 +1,8 @@
 import { NextPage } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const police_station: NextPage = () => {
+const pst: NextPage = () => {
 
   const [ police, setPoliceSt ] = useState([{
     id: "",
@@ -19,7 +20,7 @@ const police_station: NextPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className=" container">
       <h1 className="handwriten">Ploice Station</h1>
       <table className="table table-bordered table-striped">
         <thead>
@@ -39,8 +40,9 @@ const police_station: NextPage = () => {
           })
         }</tbody>
       </table>
+      <Link href="/police/add" className="btn btn-primary">Add</Link>
     </div>
   );
 };
 
-export default police_station;
+export default pst;
