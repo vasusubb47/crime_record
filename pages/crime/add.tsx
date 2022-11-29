@@ -2,29 +2,31 @@
 import { NextPage } from "next";
 import Router from "next/router";
 import { useState } from "react";
+import { crime } from "@prisma/client";
 
-const addCriminal: NextPage = () => {
+const addCrime: NextPage = () => {
 
   const [status, setStatus] = useState(0);
   const [message, setMessage] = useState({});
 
   return (
     <div>
-      <h1 className="handwriten">Add Criminal</h1>
+      <h1 className="handwriten">Add Crime</h1>
       <form onSubmit={(e) => {
         e.preventDefault()
         const target = e.target as HTMLFormElement;
         console.log(target);
-        const [name, address, phoneNo] = [target[0], target[1], target[2]] as [HTMLInputElement, HTMLInputElement, HTMLInputElement];
+        const [location, type_of_crime, date_of_crime, fir_id] = [target[0], target[1], target[2], target[3]] as [HTMLInputElement, HTMLInputElement, HTMLInputElement, HTMLInputElement];
         
         const data = {
-          name: name.value,
-          address: address.value,
-          phoneNo: phoneNo.value
+          location: location.value,
+          type_of_crime: type_of_crime.value,
+          date_of_crime: date_of_crime.value,
+          fir_id: fir_id.value,
         };
         console.log(data);
         fetch(
-          "/api/criminal/add",
+          "/api/crime/add",
           {
             method: "post",
             headers: {
@@ -38,7 +40,7 @@ const addCriminal: NextPage = () => {
           setStatus(res.status);
           if(res.status == 200) {
             setTimeout(() => {
-              Router.push("/criminal");
+              // Router.push("/crime");
             }, 3000);
           }
           res.json().then(
@@ -50,17 +52,21 @@ const addCriminal: NextPage = () => {
       >
         <table>
           <tbody>
-            <tr key={"name"}>
-              <td><label htmlFor="name">name</label></td>
-              <td><input type="text" name="name" id="name" /></td>
+            <tr key={"location"}>
+              <td><label htmlFor="location">location</label></td>
+              <td><input type="text" name="location" id="location" /></td>
             </tr>
-            <tr key={"address"}>
-              <td><label htmlFor="address">address</label></td>
-              <td><input type="text" name="address" id="address" /></td>
+            <tr key={"typeOfCrime"}>
+              <td><label htmlFor="typeOfCrime">type of crime</label></td>
+              <td><input type="text" name="typeOfCrime" id="typeOfCrime" /></td>
             </tr>
-            <tr key={"phoneNo"}>
-              <td><label htmlFor="phoneNo">phoneNo</label></td>
-              <td><input type="text" name="phoneNo" id="phoneNo" /></td>
+            <tr key={"dateOfCrime"}>
+              <td><label htmlFor="dateOfCrime">date of crime</label></td>
+              <td><input type="text" name="dateOfCrime" id="dateOfCrime" /></td>
+            </tr>
+            <tr key={"firId"}>
+              <td><label htmlFor="firId">fir id</label></td>
+              <td><input type="text" name="firId" id="firId" /></td>
             </tr>
           </tbody>
         </table>
@@ -78,6 +84,6 @@ const addCriminal: NextPage = () => {
       }
     </div>
   );
-}
+};
 
-export default addCriminal;
+export default addCrime;

@@ -1,15 +1,11 @@
 import { NextPage } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { crime } from "@prisma/client";
 
 const crimePage: NextPage = () => {
 
-  const [ crimes, setCrime ] = useState([{
-    id: "",
-    location: "",
-    type_of_crime: "",
-    date_of_crime: "",
-    fir_id: ""
-  }]);
+  const [ crimes, setCrime ] = useState([] as crime[]);
 
   useEffect(() => {
     fetch("/api/crime")
@@ -39,12 +35,14 @@ const crimePage: NextPage = () => {
               <td>{ele.id}</td>
               <td>{ele.location}</td>
               <td>{ele.type_of_crime}</td>
-              <td>{ele.date_of_crime}</td>
+              <td>{ele.date_of_crime.toString()}</td>
               <td>{ele.fir_id}</td>
             </tr>
           })
         }</tbody>
       </table>
+      <hr />
+      <Link href="/crime/add" className="btn btn-primary"> Add </Link>
     </div>
   );
 };
