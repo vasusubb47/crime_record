@@ -36,7 +36,7 @@ const crimePage: NextPage = () => {
               <td>{ele.location}</td>
               <td>{ele.type_of_crime}</td>
               <td>{ele.date_of_crime.toString()}</td>
-              <td>{ele.fir_id}</td>
+              <td><Link href={`/fir/report/${ele.fir_id}`}>{ele.fir_id}</Link></td>
             </tr>
           })
         }</tbody>
