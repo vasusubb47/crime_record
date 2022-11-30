@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async function crime(
+export default async function addCriminal(
   req: NextApiRequest,
   res: NextApiResponse
 ){
@@ -38,7 +38,7 @@ export default async function crime(
 
   const newCr = await prisma.criminal.create({
     data: {
-      id: "cr00" + ((await prisma.criminal.findMany()).length + 1),
+      id: "c00" + ((await prisma.criminal.findMany()).length + 1),
       name: body.name,
       address: body.address,
       phone_number: body.phoneNo 

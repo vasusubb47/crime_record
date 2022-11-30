@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const fir: NextPage = () => {
@@ -38,7 +39,7 @@ const fir: NextPage = () => {
         <tbody>{
           firs.map((ele, ind: number) => {
             return <tr key={ind}>
-              <td>{ele.id}</td>
+              <td><Link href={`/fir/report/${ele.id}`}>{ele.id}</Link></td>
               <td>{ele.date_of_filling}</td>
               <td>{ele.witness_name}</td>
               <td>{ele.witness_pho}</td>

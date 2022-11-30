@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async function crime(
+export default async function fir(
   req: NextApiRequest,
   res: NextApiResponse
 ){

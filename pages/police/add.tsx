@@ -15,7 +15,7 @@ const addPoliceSt: NextPage = () => {
         e.preventDefault()
         const target = e.target as HTMLFormElement;
         console.log(target);
-        const [name, address] = [target[0], target[1]] as [HTMLInputElement, HTMLInputElement];
+        const [name, address] = [target[0], target[1]]  as HTMLInputElement[];
         
         const data = {
           name: name.value,

@@ -15,7 +15,7 @@ const addCriminal: NextPage = () => {
         e.preventDefault()
         const target = e.target as HTMLFormElement;
         console.log(target);
-        const [name, address, phoneNo] = [target[0], target[1], target[2]] as [HTMLInputElement, HTMLInputElement, HTMLInputElement];
+        const [name, address, phoneNo] = [target[0], target[1], target[2]] as HTMLInputElement[];
         
         const data = {
           name: name.value,

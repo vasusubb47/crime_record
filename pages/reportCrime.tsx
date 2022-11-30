@@ -14,7 +14,7 @@ const reportCrime: NextPage = () => {
         e.preventDefault();
         console.log(e);
         const t = e.target as HTMLFormElement;
-        const [wname, wPho, pstId, loc, toc, summary] = [t[0], t[1], t[2], t[3], t[4], t[5]] as [HTMLInputElement, HTMLInputElement, HTMLInputElement, HTMLInputElement, HTMLInputElement, HTMLTextAreaElement];
+        const [wname, wPho, pstId, loc, toc, summary] = [t[0], t[1], t[2], t[3], t[4], t[5]]  as HTMLInputElement[];
         
         const data = {
           witness_name: wname.value,

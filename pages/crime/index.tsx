@@ -41,6 +41,7 @@ const crimePage: NextPage = () => {
           })
         }</tbody>
       </table>
+      <Link href="/linkCrime" className="btn btn-primary"> link cime to criminal </Link>
     </div>
   );
 };
